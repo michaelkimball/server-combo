@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link type="text/css" rel="stylesheet" href="/public/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/styles.css"/>
+    {{{block "pageStyles"}}}
+</head>
+
+<body background="/public/img/competition.jpg">
+{{> navbar}}
+<!-- Placeholder for page content. -->
+{{{body}}}
+
+<!-- Partials are common snippets to be used 1 or more pages. -->
+{{> scripts}}
+
+<!-- A block is placeholder for pieces of content defined in a page. -->
+{{{block 'pageScripts'}}}
+</body>
+</html>

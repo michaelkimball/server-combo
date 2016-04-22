@@ -1,0 +1,36 @@
+{{!< html-struct}}
+
+{{#contentFor 'pageScripts'}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/courses/',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function(index, value) {
+                        console.log(value);
+                        $('#classes').append("<li>" + "<a href='/classRoom'>" + value.name + "</li>");
+                    });
+                }
+            });
+        });
+    </script>
+{{/contentFor}}
+
+<div class="col-md-10 col-md-offset-1 backgrnd padding20 margin20 see-through-container">
+    <!--CLASSES-->
+    <!--CONTENT-->
+    <div data-role="page" id="pageone">
+        <div data-role="main" class="ui-content">
+            <h2>My Classes</h2>
+            <div id="styles">
+                <ul id="classes" data-role="listview" >
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <a href="/classForm" class="btn btn-success">Add Class</a>
+</div>

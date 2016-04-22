@@ -1,0 +1,33 @@
+{{!< html-struct}}
+
+<div class="col-md-4 col-md-offset-4 see-through-container" >
+    <!--LOGIN FORM-->
+    <form name="login-form" action="/authenticate" method="post">
+
+        <!--HEADER-->
+        <div class="header">
+            <!--TITLE--><h1>Login</h1><!--END TITLE-->
+
+        </div>
+        <!--END HEADER-->
+
+
+        <!--CONTENT-->
+        <div class="content">
+            <input name="email" type="text" class="input username form-control" placeholder="Email" onfocus="this.value=''" required="required" /><br><!--END USERNAME-->
+            <input name="password" type="password" class="input password form-control" placeholder="Password" required="required"onfocus="this.value=''"/><!--END PASSWORD-->
+        </div>
+        <!--END CONTENT-->
+
+
+        <!--FOOTER-->
+        <div class="footer flex-container flex-between">
+            <!--REGISTER BUTTON--><a href="/register" class="margin20">Register</a> <!--END REGISTER BUTTON-->
+            <!--LOGIN BUTTON--><input type="submit" name="submit" value="Login" class="btn btn-primary long-container" /><!--END LOGIN BUTTON-->
+        </div>
+        <!--END FOOTER-->
+
+    </form>
+    <!--END LOGIN FORM-->
+
+</div>

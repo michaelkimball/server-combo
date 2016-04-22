@@ -1,0 +1,36 @@
+{{!< html-struct}}
+
+{{#contentFor 'pageScripts'}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/behaviors/',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function(index, value) {
+                        console.log(value);
+                        $('#behaviors').append("<li>" + "<a href='/behaviorForm'>" + value.name + "</li>");
+                    });
+                }
+            });
+        });
+    </script>
+{{/contentFor}}
+
+<div class="col-md-10 col-md-offset-1 backgrnd padding20 margin20 see-through-container">
+    <!--CLASSES-->
+    <!--CONTENT-->
+    <div data-role="page" id="pageone">
+        <div data-role="main" class="ui-content">
+            <h2>Behaviors</h2>
+            <div id="styles">
+                <ul id="behaviors" data-role="listview" >
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <a href="/behaviorForm" class="btn btn-success">Add Behavior</a>
+</div>

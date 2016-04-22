@@ -1,0 +1,40 @@
+{{!< html-struct}}
+{{#contentFor 'pageScripts'}}
+    <script type="text/javascript">
+        $.ajax({
+            type: 'GET',
+            url: '/api/sexyGuardians',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $.each(data, function(index, value) {
+                    //Looks up all students with guardian_id pertaining to instructor
+                    $.ajax({
+                        type: 'GET',
+                        url: '/api/student/' + value._id,
+                        dataType: 'json',
+                        success: function (data) {
+                            $.each(data, function(index, value) {
+                                // Displays student name connected to guardian
+                                console.log(value);
+                                $('#students').append("<li>" + "<a href='/studentForm'>" + value.first + ' ' + value.last + "</li>");
+                            })
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+{{/contentFor}}
+
+<div class="col-md-4 col-md-offset-1 padding20 margin20 see-through-container">
+    <div data-role="page" id="pageone">
+        <div data-role="main" class="ui-content">
+            <h2>My Students</h2>
+            <ul id="students" data-role="listview">
+            </ul>
+        </div>
+
+    </div>
+        <a href="/studentForm" class="btn btn-success footer">Add Student</a>
+</div>

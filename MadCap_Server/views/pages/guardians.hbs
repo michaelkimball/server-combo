@@ -1,0 +1,32 @@
+{{!< html-struct}}
+{{#contentFor 'pageScripts'}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/sexyGuardians',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function(index, value) {
+                        console.log(value);
+                        $('#guardians').append("<li>" + "<a href='/guardianForm'>" + value.first + " " + value.last + "</li>");
+                    });
+                }
+            });
+        });
+    </script>
+{{/contentFor}}
+
+<div class="col-md-6 see-through-container col-md-offset-1 backgrnd padding20 margin20">
+    <!--CONTENT-->
+    <div data-role="page" id="pageone">
+        <div data-role="main" class="ui-content">
+            <h2>Parents</h2>
+            <ul id="guardians" data-role="listview">
+            </ul>
+        </div>
+
+    </div>
+    <a href="/guardianForm" class="btn btn-success footer">Add Parent</a>
+</div>

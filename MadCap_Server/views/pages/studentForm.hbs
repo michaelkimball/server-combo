@@ -1,0 +1,63 @@
+{{!< html-struct}}
+{{#contentFor 'pageScripts'}}
+    <script type="text/javascript">
+        function myFunction() {
+            var parentEmail = document.getElementById("parentEmail").value;
+            $.ajax({
+                type: 'GET',
+                url: '/api/sexyGuardian/' + parentEmail,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    var formData = {
+                        'first': $('input[name=first]').val(),
+                        'last': $('input[name=last]').val(),
+                        'sexy_guardian_id': data._id
+                    };
+                    console.log("Submitting: " + formData);
+                    $.ajax({
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'json',
+                        url: '/api/student/',
+                        encode: true,
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    });
+                    alert("Student successfully created!");
+                }
+            });
+        };
+    </script>
+{{/contentFor}}
+
+<div class="col-md-10 col-md-offset-1 see-through-container padding20 margin20">
+
+    <!--CLASS FORM-->
+    <form name="student-form" onsubmit="event.preventDefault(); myFunction();">
+
+        <!--HEADER-->
+        <div class="header">
+            <!--TITLE--><h1>Student Form</h1><!--END TITLE-->
+        </div>
+        <!--END HEADER-->
+
+        <!--CONTENT-->
+        <div>
+            <input name="first" type="text" required="required" class="form-control" placeholder="First Name" /><br><br>
+            <input name="last" type="text" required="required" class="form-control" placeholder="Last Name" /><br><br>
+            <input id="parentEmail" type="email" required="required" class="form-control" placeholder="Parent Email" /><br>
+        </div>
+        <!--END CONTENT-->
+
+        <!--FOOTER-->
+        <div>
+            <!--ADD CLASS BUTTON--><input type="submit" name="submit" value="Add Student" class="btn btn-success footer" /><!--END REGISTER BUTTON-->
+        </div>
+        <!--END FOOTER-->
+
+    </form>
+    <!--END LOGIN FORM-->
+
+</div>

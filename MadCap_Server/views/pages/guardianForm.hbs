@@ -1,0 +1,55 @@
+{{!< html-struct}}
+{{#contentFor 'pageScripts'}}
+    <script type="text/javascript">
+        function myFunction() {
+            var formData = {
+                'first': $('input[name=first]').val(),
+                'last': $('input[name=last]').val(),
+                'email': $('input[name=email]').val(),
+                'password': $('input[name=password]').val()
+            };
+            $.ajax({
+                type: 'POST',
+                data: formData,
+                url: '/api/sexyGuardian',
+                dataType: 'json',
+                encode: true,
+                success: function (data) {
+                    console.log(data);
+                    console.log("Submitting: " + formData);
+                }
+            });
+            alert("Student successfully created!");
+        };
+    </script>
+{{/contentFor}}
+
+<div class="col-md-10 col-md-offset-1 backgrnd padding20 margin20 see-through-container">
+
+    <!--CLASS FORM-->
+    <form name="parent-form" onsubmit="event.preventDefault(); myFunction();">
+
+        <!--HEADER-->
+        <div class="header">
+            <!--TITLE--><h1>Parent Form</h1><!--END TITLE-->
+        </div>
+        <!--END HEADER-->
+
+        <!--CONTENT-->
+        <div>
+            <input name="first" type="text" required="required" class="form-control" placeholder="First Name"/><br><br>
+            <input name="last" type="text" required="required" class="form-control" placeholder="Last Name"/><br><br>
+            <input name="email" type="email" required="required" class="form-control" placeholder="Email"/><br><br>
+            <input name="password" type="password" required="required" class="form-control" placeholder="Password"/><br><br>
+        </div>
+        <!--END CONTENT-->
+
+        <!--FOOTER-->
+        <div class="flex-container flex-end">
+            <!--ADD CLASS BUTTON--><input type="submit" name="submit" value="Add Parent" class="btn btn-success" /><!--END REGISTER BUTTON-->
+        </div>
+        <!--END FOOTER-->
+
+    </form>
+    <!--END LOGIN FORM-->
+</div>

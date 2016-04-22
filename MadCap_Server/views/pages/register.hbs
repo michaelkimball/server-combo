@@ -1,0 +1,28 @@
+{{!< user-loggin-in}}
+<div class="col-md-8 col-md-offset-2 white-bg padding30">
+    <div class="header">
+        <!--TITLE--><h1>Registration</h1><!--END TITLE-->
+    </div>
+    <form action="/api/instructor" method="post">
+        <div>
+            <label for="first">First Name:</label>
+            <input type="text" class="form-control" id="first" name="first" placeholder="First Name">
+        </div>
+
+        <div>
+            <label for="second">Last Name:</label>
+            <input type="text" class="form-control" id="second" name="second" placeholder="Last Name">
+        </div>
+
+        <div>
+            <label for="email">Email Address:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="First Name">
+        </div>
+        <input type="submit" name="submit" value="Register" class="btn btn-success footer pull-right" />
+    </form>
+</div>
