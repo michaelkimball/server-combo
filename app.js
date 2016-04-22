@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(subdomain('tabletopsquire', tabletopsquire));
-app.use(subdomain('madcapserver', madcapserver));
+app.use(subdomain('tabletopsquire', tabletopsquire.router));
+app.use(subdomain('madcapserver', madcapserver.router));
 app.get('/', function(req, res){
     res.send("Hi");
 });
