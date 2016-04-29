@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(subdomain('tabletopsquire', tabletopsquire.app));
-app.use(subdomain('madcapserver', madcapserver.app));
+app.use(subdomain('one2many', madcapserver.app));
 app.get('/', function(req, res){
     res.send("Hi");
 });

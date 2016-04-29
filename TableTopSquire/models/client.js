@@ -1,4 +1,7 @@
-var mongoose = require('mongoose');
+var config = require('../config.js');
+var mongoose = config.mongoose;
+mongoose.Schema = config.Schema;
+
 
 var ClientSchema = new mongoose.Schema({
     name: { type: String, unique: true, required: true },

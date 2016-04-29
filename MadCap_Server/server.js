@@ -55,14 +55,14 @@ var TopicHistoryController = require('./controllers/topicHistory');
 		extended: true
 	}));
 
-	app.use(session({secret: 'secretSecrets', resave: false, saveUninitialized: false}));
+	app.use(session({secret: config.secret, resave: false, saveUninitialized: false}));
 
 // use morgan to log requests to the console
 	app.use(morgan('dev'));
 
 // Use express static for images, css, and js files
 //app.use('/static', express.static('public'));
-	app.use('/public', express.static('public'));
+	app.use('/public', express.static(__dirname + '/public'));
 
 // login page
 	app.get('/login', function (req, res) {

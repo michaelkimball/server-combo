@@ -1,8 +1,7 @@
 var express = require('express');
 var app = express();
-var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-//var ejs = require('ejs');
+var config = require('./config');
 var hbs = require('express-hbs');
 var session = require('express-session');
 var passport = require('passport');
@@ -17,11 +16,9 @@ var router = express.Router();
 var port = process.env.PORT || 80;
 //var io = require('socket.io').listen(http);
 var tts = require('./tabletop');
-//exports.getApp = function() {
     //var http = require('http').createServer(app);
     //var io = require("socket.io")(http);
 
-    mongoose.connect('mongodb://localhost:27017/tabletopsquire');
 
     app.engine('hbs', hbs.express4({
         defaultLayout: __dirname + '/views/layouts/default.hbs',
@@ -35,14 +32,13 @@ var tts = require('./tabletop');
     }));
 
     app.use(session({
-        secret: 'com.tabletopsquire.app',
+        secret: config.secret,
         saveUninitialized: true,
         resave: true
     }));
 
     app.use(passport.initialize());
-
-    app.use('/public', express.static('public'));
+    app.use('/public', express.static(__dirname + '/public'));
 
     app.get('/', function (req, res) {
         res.render('pages/home');
@@ -89,6 +85,3 @@ var tts = require('./tabletop');
     //    });
     //});
 exports.app = app;
-exports.mongoose = mongoose;
-    //return app;
-//};
