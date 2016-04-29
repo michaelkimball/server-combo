@@ -1,6 +1,8 @@
 //Load Packages
-var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+var config = require('../config.js');
+var mongoose = config.mongoose;
+mongoose.Schema = config.Schema;
+var bcrypt = require('bcrypt-nodejs');
 
 //Define Schema
 var InstructorSchema = new mongoose.Schema({

@@ -1,4 +1,8 @@
+var mongoose = require('mongoose');
+var database = 'mongodb://localhost:27017/madcap';
+var connection = mongoose.createConnection(database);
 module.exports = {
     'secret': 'supersecretsecretsforthemadcappers',
-    'database': 'mongodb://localhost:27017/madcap'
+    'mongoose': connection,
+    'Schema': mongoose.Schema
 };

@@ -1,5 +1,7 @@
 //Load Packages
-var mongoose = require('mongoose');
+var config = require('../config.js');
+var mongoose = config.mongoose;
+mongoose.Schema = config.Schema;
 
 //Define Schema
 var StudentSchema = new mongoose.Schema({
