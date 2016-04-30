@@ -7,7 +7,7 @@ exports.postCourse = function(req, res, done){
 	console.log('Adding Course to database');
 
 	var course = new Course({
-		instructor_id: req.body.instructor_id,
+		instructor_id: req.session.instructor_id,
 		grade_level: req.body.grade_level,
 		description: req.body.description,
 		name: req.body.name
