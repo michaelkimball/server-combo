@@ -21,7 +21,7 @@ InstructorSchema.pre('save', function(done){
 	//Pass Changed
 	bcrypt.genSalt(5, function(err, salt){
 		if(err) return done(err);
-		bcrypt.hash(Instructor.password, salt, function(err, hash){
+		bcrypt.hash(Instructor.password, salt, null, function(err, hash){
 			if(err) {
 				return done(err);
 			}

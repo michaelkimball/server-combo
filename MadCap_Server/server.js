@@ -6,7 +6,7 @@ var passport = require('passport');
 var morgan = require('morgan');
 var jwt = require('jsonwebtoken');
 var config = require('./config'); // get our config file
-var hbs = require('express-hbs');
+var hbs = require('express-hbs').create();
 var Instructor = require('./models/instructor');
 
 var app = express();
@@ -139,7 +139,7 @@ var TopicHistoryController = require('./controllers/topicHistory');
 
 	apiRouter.route('/course/:_id')
 		.get(CourseController.getCourse);
-	apiRouter.route('/courses/:instructor_id')
+	apiRouter.route('/courses/')
 		.get(CourseController.getInstructorCourses);
 
 //----------------------------------------------------------------------------

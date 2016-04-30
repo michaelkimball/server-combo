@@ -7,7 +7,7 @@ exports.postCourse = function(req, res, done){
 	console.log('Adding Course to database');
 
 	var course = new Course({
-		instructor_id: req.body.instructor_id,
+		instructor_id: req.session.instructor_id,
 		grade_level: req.body.grade_level,
 		description: req.body.description,
 		name: req.body.name
@@ -38,10 +38,10 @@ exports.getCourse= function(req, res){
 };
 
 exports.getInstructorCourses = function(req, res){
-	Course.find({ 'instructor_id': req.params.instructor_id }, function(err, courses){
+	Course.find({ 'instructor_id': req.session.instructor_id }, function(err, courses){
 		if(err) res.send(err);
 
-		console.log("Finding courses: " + req.params.instructor_id);
+		console.log("Finding courses: " + req.session.instructor_id);
 		console.log(JSON.stringify(courses, null, 2));
 
 		//success

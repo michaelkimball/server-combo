@@ -18,7 +18,7 @@ SexyGuardianSchema.pre('save', function(done){
     //Pass Changed
     bcrypt.genSalt(5, function(err, salt){
         if(err) return done(err);
-        bcrypt.hash(SexyGuardian.password, salt, function(err, hash){
+        bcrypt.hash(SexyGuardian.password, salt, null, function(err, hash){
             if(err) {
                 return done(err);
             }
