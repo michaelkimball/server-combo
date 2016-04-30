@@ -6,7 +6,7 @@ var passport = require('passport');
 var morgan = require('morgan');
 var jwt = require('jsonwebtoken');
 var config = require('./config'); // get our config file
-var hbs = require('express-hbs');
+var hbs = require('express-hbs').create();
 var Instructor = require('./models/instructor');
 
 var app = express();
