@@ -38,10 +38,10 @@ exports.getCourse= function(req, res){
 };
 
 exports.getInstructorCourses = function(req, res){
-	Course.find({ 'instructor_id': req.params.instructor_id }, function(err, courses){
+	Course.find({ 'instructor_id': req.session.instructor_id }, function(err, courses){
 		if(err) res.send(err);
 
-		console.log("Finding courses: " + req.params.instructor_id);
+		console.log("Finding courses: " + req.session.instructor_id);
 		console.log(JSON.stringify(courses, null, 2));
 
 		//success
