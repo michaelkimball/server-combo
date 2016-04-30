@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var config = require('./config');
 var hbs = require('express-hbs').create();
 var path = require('path');
 
