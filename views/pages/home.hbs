@@ -538,11 +538,13 @@
 <script src="../../public/js/custom.js"></script>
 <script>
     $(document).ready(function(){
-        var from,message;
+        var from,message, firstname, lastname;
         $("#send_email").click(function(){
             from=$("#email").val();
             message=$("#message").val();
-            $.post("http://localhost/send",{from:from,message:message});
+            firstname=$("#firstname").val();
+            lastname=$("#lastname").val();
+            $.post("http://localhost/send",{from:from,message:message,firstname:firstname,lastname:lastname});
         });
     });
 </script>
