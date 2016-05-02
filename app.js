@@ -16,21 +16,35 @@ app.get('/', function(req, res){
     res.render('pages/home');
 });
 app.post('/send', function(req, res){
-    var mailOptions={
+    var contactOptions={
         to : mgConfig.email,
         from: mgConfig.email,
         subject : "michaelkimball.info Contact Form",
         text : req.body.firstname + " " + req.body.lastname + " <" + req.body.email +
         ">\n\n" + req.body.message
     };
-    console.log(mailOptions);
-    mailgunTransport.sendMail(mailOptions, function(error, response){
+    var autoResponseOptions={
+        to: req.body.email,
+        from: mgConfig.email,
+        subject: "michaelkimball.info Contact Form",
+        text: "Thank you for attempting to contact Michael Kimball. I have received your message and will attempt respond as soon as possible."
+    }
+    console.log(contactOptions);
+    mailgunTransport.sendMail(contactOptions, function(error, response){
         if(error){
             console.log(error);
             res.send(error.message);
         }else{
             console.log("Message sent: " + response.message);
-            res.end("sent");
+        }
+    });
+    mailgunTransport.sendMail(autoResponseOptions, function(error, response){
+        if(error){
+            console.log(error);
+            res.send(error.message);
+        }else{
+            console.log("Message sent: " + response.message);
+            res.send("sent");
         }
     });
 });
