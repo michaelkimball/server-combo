@@ -7,14 +7,9 @@ var madcapserver = require('./MadCap_Server/server');
 var app = server.app;
 var io = server.io;
 var path = require('path');
-var bodyParser = require('body-parser');
 var hbs = require('express-hbs');
 var mgConfig = require('./mailgun');
 var mailgunTransport = nodemailer.createTransport(mg(mgConfig.auth));
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
 app.use(subdomain('tabletopsquire', tabletopsquire.app));
 app.use(subdomain('one2many', madcapserver.app));
 app.get('/', function(req, res){

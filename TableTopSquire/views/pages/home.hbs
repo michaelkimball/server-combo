@@ -294,19 +294,69 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/public/js/jquery.js"></script>
+<script src="/public/js/jquery-2.2.3.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/public/js/bootstrap.min.js"></script>
 
 <!-- Plugin JavaScript -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="/public/js/classie.js"></script>
-<script src="/public/js/cbpAnimatedHeader.js"></script>
+<script src="/public/js/jquery.easing.min.js"></script>
 
-<!-- Contact Form JavaScript -->
-<script src="/public/js/jqBootstrapValidation.js"></script>
-<script src="/public/js/contact_me.js"></script>
+<script>
+    var e1 = "";
+    var e2 = "";
+    var initialAppend = function(str){
+        if(!e1.length){
+            e1 = str;
+        }else{
+            if(!e2.length){
+                e2 = str;
+            }else{
+                e1 += ", " + e2;
+                e2 = str;
+            }
+        }
+    };
+    var finalAppend = function(){
+        if(e2.length){
+            e1 += " and " + e2;
+        }
+    };
+    $(document).ready(function(){
+        var from,message, firstname, lastname;
+        $("#send_email").click(function(){
+            from=$("#email").val();
+            message=$("#message").val();
+            firstname=$("#firstname").val();
+            lastname=$("#lastname").val();
 
-<!-- Custom Theme JavaScript -->
-<script src="/public/js/agency.js"></script>
+            if(!from){
+                initialAppend("email");
+            }
+            if(!firstname){
+                initialAppend("first name");
+            }
+            if(!lastname){
+                initialAppend("last name");
+            }
+            if(!message){
+                initialAppend("message");
+            }
+            finalAppend();
+            if(!e1.length) {
+                $.post("http://localhost/send", {
+                    from: from,
+                    message: message,
+                    firstname: firstname,
+                    lastname: lastname
+                });
+                $("#message").val('');
+                alert("Message has been sent!")
+            }else{
+                alert("You must fill out " + e1);
+                e1 = "";
+                e2 = "";
+            }
+        });
+    });
+</script>
