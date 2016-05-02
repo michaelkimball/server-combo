@@ -1,4 +1,4 @@
-exports = {
+module.exports = {
     email: 'email@gmail.com',
     auth: {
         auth: {
