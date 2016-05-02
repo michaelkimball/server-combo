@@ -23,7 +23,7 @@ app.get('/', function(req, res){
 app.post('/send', function(req, res){
     var mailOptions={
         to : mgConfig.email,
-        from: req.body.from,
+        from: req.body.firstname + " " + req.body.lastname + " <" + req.body.from + ">",
         subject : "michaelkimball.info Contact Form",
         text : req.body.message
     };
