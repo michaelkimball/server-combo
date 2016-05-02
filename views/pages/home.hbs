@@ -443,8 +443,6 @@
                         <div class="col-sm-8">
                             <h3 class="hidden-xs">Leave a message</h3>
 
-                            <form role="form" id="contactForm">
-
                                 <div class="form-group control-group">
                                     <div class="controls">
                                         <p class="help-block"></p>
@@ -476,7 +474,6 @@
                                 <div class="form-group">
                                     <button type="submit" id="send_email" class="btn btn-primary">Send message</button>
                                 </div>
-                            </form>
 
                         </div>
                         <div class="col-sm-4">
@@ -528,7 +525,7 @@
 =========================== -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="../../public/js/bootstrap.min.js"></script>
-<script src="public/js/jquery.magnific-popup.min.js"></script>
+<script src="/public/js/jquery.magnific-popup.min.js"></script>
 <script src="../../public/js/creative-brands.js"></script>
 <script src="../../public/js/jquery.easy-pie-chart.js"></script>
 <script src="../../public/js/modernizr.custom.js"></script>
@@ -537,6 +534,25 @@
 <script src="../../public/js/jqBootstrapValidation.js"></script>
 <script src="../../public/js/custom.js"></script>
 <script>
+    var e1 = "";
+    var e2 = "";
+    var initialAppend = function(str){
+        if(!e1.length){
+            e1 = str;
+        }else{
+            if(!e2.length){
+                e2 = str;
+            }else{
+                e1 += ", " + e2;
+                e2 = str;
+            }
+        }
+    };
+    var finalAppend = function(){
+        if(e2.length){
+            e1 += " and " + e2;
+        }
+    };
     $(document).ready(function(){
         var from,message, firstname, lastname;
         $("#send_email").click(function(){
@@ -544,49 +560,33 @@
             message=$("#message").val();
             firstname=$("#firstname").val();
             lastname=$("#lastname").val();
-            $.post("http://localhost/send",{from:from,message:message,firstname:firstname,lastname:lastname});
+
+            if(!from){
+                initialAppend("email");
+            }
+            if(!firstname){
+                initialAppend("first name");
+            }
+            if(!lastname){
+                initialAppend("last name");
+            }
+            if(!message){
+                initialAppend("message");
+            }
+            finalAppend();
+            if(!e1.length) {
+                $.post("http://localhost/send", {
+                    from: from,
+                    message: message,
+                    firstname: firstname,
+                    lastname: lastname
+                });
+                alert("Message has been sent!")
+            }else{
+                alert("You must fill out " + e1);
+                e1 = "";
+                e2 = "";
+            }
         });
     });
 </script>
-<!--<script>-->
-    <!--$(function () {-->
-        <!--$("input,textarea").jqBootstrapValidation({-->
-            <!--preventSubmit: true,-->
-
-            <!--submitSuccess: function($form, event) {-->
-                <!--event.preventDefault(); // prevent default submit behaviour-->
-                <!--// get values from FORM-->
-                <!--var firstname = $("input#firstname").val();-->
-                <!--var lastname = $("input#lastname").val();-->
-                <!--var email = $("input#email").val();-->
-                <!--var message = $("textarea#message").val();-->
-
-                <!--$.ajax({-->
-                    <!--url: "send.php",-->
-                    <!--type: "POST",-->
-                    <!--data: {-->
-                        <!--firstname: firstname,-->
-                        <!--lastname: lastname,-->
-                        <!--email: email,-->
-                        <!--message: message-->
-                    <!--},-->
-                    <!--cache: false,-->
-                    <!--success: function() {-->
-                        <!--// Success message-->
-                        <!--$('.contact-alert').html("<div class='alert alert-success'>");-->
-                        <!--$('.contact-alert > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'><i class='fa fa-times'></i></button><strong>Your message has been sent.</strong></div>");-->
-                        <!--//clear all fields-->
-                        <!--$('#contactForm').trigger("reset");-->
-                    <!--},-->
-                    <!--error: function() {-->
-                        <!--// Fail message-->
-                        <!--$('.contact-alert').html("<div class='alert alert-danger'>");-->
-                        <!--$('.contact-alert > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'><i class='fa fa-times'></i></button><strong>Sorry, it seems that my mail server is not responding. Please try again later!</strong></div>");-->
-                        <!--//clear all fields-->
-                        <!--$('#contactForm').trigger("reset");-->
-                    <!--},-->
-                <!--})-->
-            <!--}-->
-        <!--});-->
-    <!--});-->
-<!--</script>-->
