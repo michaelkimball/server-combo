@@ -576,12 +576,17 @@
             finalAppend();
             if(!e1.length) {
                 $.post("http://michaelkimball.info/send", {
-                    from: from,
+                    email: from,
                     message: message,
                     firstname: firstname,
                     lastname: lastname
+                }, function(data){
+                    if(data != "sent")
+                        alert(data);
+                    else{
+                        alert("Message has been sent!");
+                    }
                 });
-                alert("Message has been sent!")
             }else{
                 alert("You must fill out " + e1);
                 e1 = "";

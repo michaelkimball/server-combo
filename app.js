@@ -18,7 +18,7 @@ app.get('/', function(req, res){
 app.post('/send', function(req, res){
     var mailOptions={
         to : mgConfig.email,
-        from: req.body.firstname + " " + req.body.lastname + " <" + req.body.from + ">",
+        from: req.body.firstname + " " + req.body.lastname + " <" + req.body.email + ">",
         subject : "michaelkimball.info Contact Form",
         text : req.body.message
     };
@@ -26,7 +26,7 @@ app.post('/send', function(req, res){
     mailgunTransport.sendMail(mailOptions, function(error, response){
         if(error){
             console.log(error);
-            res.end("error");
+            res.send(error.message);
         }else{
             console.log("Message sent: " + response.message);
             res.end("sent");
