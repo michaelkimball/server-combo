@@ -38,7 +38,7 @@ $(document).ready(function() {
 			scaleColor: false,
 			lineCap: 'butt',
 			lineWidth: 12,
-			size:110,
+			size:130,
 			animate: 2000
 		});
     });
