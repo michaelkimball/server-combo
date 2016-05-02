@@ -25,10 +25,10 @@ app.post('/send', function(req, res){
     };
     var autoResponseOptions={
         to: req.body.email,
-        from: mgConfig.email,
+        from: "Michael Kimball <" + mgConfig.email + ">",
         subject: "michaelkimball.info Contact Form",
         text: "Thank you for attempting to contact Michael Kimball. I have received your message and will attempt respond as soon as possible."
-    }
+    };
     console.log(contactOptions);
     mailgunTransport.sendMail(contactOptions, function(error, response){
         if(error){
