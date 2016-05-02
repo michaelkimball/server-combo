@@ -537,44 +537,54 @@
 <script src="../../public/js/jqBootstrapValidation.js"></script>
 <script src="../../public/js/custom.js"></script>
 <script>
-    $(function () {
-        $("input,textarea").jqBootstrapValidation({
-            preventSubmit: true,
-
-            submitSuccess: function($form, event) {
-                event.preventDefault(); // prevent default submit behaviour
-                // get values from FORM
-                var firstname = $("input#firstname").val();
-                var lastname = $("input#lastname").val();
-                var email = $("input#email").val();
-                var message = $("textarea#message").val();
-
-                $.ajax({
-                    url: "send.php",
-                    type: "POST",
-                    data: {
-                        firstname: firstname,
-                        lastname: lastname,
-                        email: email,
-                        message: message
-                    },
-                    cache: false,
-                    success: function() {
-                        // Success message
-                        $('.contact-alert').html("<div class='alert alert-success'>");
-                        $('.contact-alert > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'><i class='fa fa-times'></i></button><strong>Your message has been sent.</strong></div>");
-                        //clear all fields
-                        $('#contactForm').trigger("reset");
-                    },
-                    error: function() {
-                        // Fail message
-                        $('.contact-alert').html("<div class='alert alert-danger'>");
-                        $('.contact-alert > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'><i class='fa fa-times'></i></button><strong>Sorry, it seems that my mail server is not responding. Please try again later!</strong></div>");
-                        //clear all fields
-                        $('#contactForm').trigger("reset");
-                    },
-                })
-            }
+    $(document).ready(function(){
+        var from,message;
+        $("#send_email").click(function(){
+            from=$("#email").val();
+            message=$("#message").val();
+            $.post("http://localhost/send",{from:from,message:message});
         });
     });
 </script>
+<!--<script>-->
+    <!--$(function () {-->
+        <!--$("input,textarea").jqBootstrapValidation({-->
+            <!--preventSubmit: true,-->
+
+            <!--submitSuccess: function($form, event) {-->
+                <!--event.preventDefault(); // prevent default submit behaviour-->
+                <!--// get values from FORM-->
+                <!--var firstname = $("input#firstname").val();-->
+                <!--var lastname = $("input#lastname").val();-->
+                <!--var email = $("input#email").val();-->
+                <!--var message = $("textarea#message").val();-->
+
+                <!--$.ajax({-->
+                    <!--url: "send.php",-->
+                    <!--type: "POST",-->
+                    <!--data: {-->
+                        <!--firstname: firstname,-->
+                        <!--lastname: lastname,-->
+                        <!--email: email,-->
+                        <!--message: message-->
+                    <!--},-->
+                    <!--cache: false,-->
+                    <!--success: function() {-->
+                        <!--// Success message-->
+                        <!--$('.contact-alert').html("<div class='alert alert-success'>");-->
+                        <!--$('.contact-alert > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'><i class='fa fa-times'></i></button><strong>Your message has been sent.</strong></div>");-->
+                        <!--//clear all fields-->
+                        <!--$('#contactForm').trigger("reset");-->
+                    <!--},-->
+                    <!--error: function() {-->
+                        <!--// Fail message-->
+                        <!--$('.contact-alert').html("<div class='alert alert-danger'>");-->
+                        <!--$('.contact-alert > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'><i class='fa fa-times'></i></button><strong>Sorry, it seems that my mail server is not responding. Please try again later!</strong></div>");-->
+                        <!--//clear all fields-->
+                        <!--$('#contactForm').trigger("reset");-->
+                    <!--},-->
+                <!--})-->
+            <!--}-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
