@@ -7,7 +7,6 @@ var path = require('path');
 var port = process.env.PORT || 80; // used to create, sign, and verify tokens
 var server = app.listen(port);
 var io = require('socket.io')(server);
-
 app.engine('hbs', hbs.express4({
     defaultLayout: __dirname + '/views/layouts/default.hbs',
     partialsDir: __dirname + '/views/partials',
@@ -21,5 +20,5 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-exports.app = app;
-exports.io = io;
+module.exports.app = app;
+module.exports.io = io;

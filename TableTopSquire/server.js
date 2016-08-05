@@ -17,8 +17,7 @@ var port = process.env.PORT || 80;
 //var io = require('socket.io').listen(http);
 var tts = require('./tabletop');
     //var http = require('http').createServer(app);
-    //var io = require("socket.io")(http);
-
+var io = require('../server').io;
 
     app.engine('hbs', hbs.express4({
         defaultLayout: __dirname + '/views/layouts/default.hbs',
@@ -77,11 +76,11 @@ var tts = require('./tabletop');
     //http.listen(port);
     //console.log("Server is listening on port " + port);
 
-    //io.on('connection', function (socket) {
-    //    console.log('a user connected');
-    //    socket.on('join', function (player) {
-    //        console.log("join?");
-    //        tts.initGame(io, socket, player);
-    //    });
-    //});
+    io.on('connection', function (socket) {
+        console.log('a user connected');
+        socket.on('join', function (player) {
+            console.log("join?");
+            tts.initGame(io, socket, player);
+        });
+    });
 exports.app = app;

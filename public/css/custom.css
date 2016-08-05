@@ -488,7 +488,8 @@ header {
 }
 
 .carousel-inner {
-	margin-bottom:15px;
+	margin-top: 75px;
+	margin-left: 5px;
 }
 
 .jumbotron .btn {
@@ -743,7 +744,7 @@ header {
 	color:#FFFFFF;
 }
 
-#carousel-reference {
+#carousel-reference1 #carousel-reference2 {
 	position:absolute;
 	top:28px;
 	right:37px;
@@ -1406,7 +1407,7 @@ blockquote footer {
 		height:auto;
 	}
 	
-	#carousel-reference {
+	#carousel-reference1 #carousel-reference2 {
 		top:24px;
 		right:35px;
 		left:35px;
@@ -1659,7 +1660,7 @@ blockquote footer {
 		margin-left:265px;
 	}
 	
-	#carousel-reference {
+	#carousel-reference1 #carousel-reference2 {
 		position:static;
 	}
 }
